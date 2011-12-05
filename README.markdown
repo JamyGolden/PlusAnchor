@@ -33,4 +33,9 @@ Place the following in your &lt;head&gt; section.
 
 ### Version 1
 
+#### 1.0.1
+* Changed file names and file extentions for simplicity
+* Added example HTML and CSS files to demonstrate what the script can do
+
+#### 1.0
 * First official version
