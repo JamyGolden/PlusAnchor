@@ -1,5 +1,5 @@
 /*
- * jQuery PlusAnchor 1.0
+ * jQuery PlusAnchor 1.0.1
  * By Jamy Golden
  * http://css-plus.com
  *
@@ -17,29 +17,40 @@
         base.$el = $(el);
         // Add a reverse reference to the DOM object
         base.$el.data("plusAnchor", base);
-		
+        
         base.init = function(){
             base.options = $.extend({}, $.plusAnchor.defaults, options);
-			$('a[href^="#"]').click(function(){
-				var $this = $(this);
-					href = $this.attr('href'),
-					name = $('a[name="' + $(this).attr('href').substring(1) + '"]');
-					
-				if($(href).length){
-					$('html, body').animate({scrollTop:$(href).offset().top}, base.options.speed, base.options.easing);
-					return false;
-				}
-				else if(name.length){
-					$('html, body').animate({scrollTop:name.offset().top}, base.options.speed, base.options.easing);
-					return false;
-				}
-			});
+            $('a[href^="#"]').click(function(e){
+
+                var $this = $(this);
+                    href = $this.attr('href'),
+                    name = $('a[name="' + $(this).attr('href').substring(1) + '"]');
+                    
+                if ( $(href).length ){
+
+                    $('html, body').animate({
+
+                        scrollTop: $(href).offset().top
+
+                    }, base.options.speed, base.options.easing);
+
+                }
+                else if ( name.length ){
+
+                    $('html, body').animate({
+
+                        scrollTop: name.offset().top
+
+                    }, base.options.speed, base.options.easing);
+
+                }
+            });
         };
         // Run initializer
         base.init();
     };
     $.plusAnchor.defaults ={
-    	easing: 'swing',
+        easing: 'swing',
         speed: 1000
     };
     $.fn.plusAnchor = function(options){
