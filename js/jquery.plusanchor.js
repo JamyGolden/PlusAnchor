@@ -1,5 +1,5 @@
 /*
- * jQuery PlusAnchor 1.0.1
+ * jQuery PlusAnchor 1.0.5
  * By Jamy Golden
  * http://css-plus.com
  *
@@ -15,20 +15,29 @@
         // Access to jQuery and DOM versions of element
         base.el = el;
         base.$el = $(el);
-        // Add a reverse reference to the DOM object
-        base.$el.data("plusAnchor", base);
+        base.$el.data('plusAnchor', base); // Add a reverse reference to the DOM object
         
         base.init = function(){
+
             base.options = $.extend({}, $.plusAnchor.defaults, options);
-            $('a[href^="#"]').click(function(e){
+
+            // onInit callback
+            if ( base.options.onInit && typeof( base.options.onInit ) == 'function' ) base.options.onInit( base );
+            // End onInit callback
+
+            base.$el.find('a[href^="#"]').click(function( e ) {
                 
                 e.preventDefault();
                 
                 var $this = $(this);
                     href = $this.attr('href'),
-                    name = $('a[name="' + $(this).attr('href').substring(1) + '"]');
+                    $name = $('a[name="' + $(this).attr('href').substring(1) + '"]');
                     
                 if ( $(href).length ){
+
+                    // onSlide callback
+                    if ( base.options.onSlide && typeof( base.options.onSlide ) == 'function' ) base.options.onSlide( base );
+                    // End onSlide callback
 
                     $('html, body').animate({
 
@@ -37,11 +46,15 @@
                     }, base.options.speed, base.options.easing);
 
                 }
-                else if ( name.length ){
+                else if ( $name.length ){
+
+                    // onSlide callback
+                    if ( base.options.onSlide && typeof( base.options.onSlide ) == 'function' ) base.options.onSlide( base );
+                    // End onSlide callback
 
                     $('html, body').animate({
 
-                        scrollTop: name.offset().top
+                        scrollTop: $name.offset().top
 
                     }, base.options.speed, base.options.easing);
 
@@ -52,8 +65,10 @@
         base.init();
     };
     $.plusAnchor.defaults ={
-        easing: 'swing',
-        speed: 1000
+        easing: 'swing',  // Anything other than "swing" or "linear" requires the easing.js plugin
+        speed: 1000,     // The speed, in miliseconds, it takes to complete a slide
+        onInit: null,    // Callback function on plugin initialize
+        onSlide: null    // Callback function that runs just before the page starts animating
     };
     $.fn.plusAnchor = function(options){
         return this.each(function(){
