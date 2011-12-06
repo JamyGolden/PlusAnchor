@@ -21,7 +21,9 @@
         base.init = function(){
             base.options = $.extend({}, $.plusAnchor.defaults, options);
             $('a[href^="#"]').click(function(e){
-
+                
+                e.preventDefault();
+                
                 var $this = $(this);
                     href = $this.attr('href'),
                     name = $('a[name="' + $(this).attr('href').substring(1) + '"]');
