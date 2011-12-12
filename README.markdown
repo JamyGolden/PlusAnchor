@@ -15,7 +15,7 @@ Place the following in your &lt;head&gt; section.
 	<script type="text/javascript">
 	$(document).ready(function(){
 
-		$(document).plusAnchor({
+		$('body').plusAnchor({
 			easing: 'easeInOutExpo',
 			speed: 	1000
 		});
@@ -24,7 +24,7 @@ Place the following in your &lt;head&gt; section.
 	</script>
 
 ## Available options
-	$(document).plusAnchor({
+	$('body').plusAnchor({
         easing: 'swing', 	// The easing method, defaults are 'swing' and 'linear'. Anything else requires the easing.js plugin
         speed:  1000 		// The amount of time, in milisecons, it takes to complete a transition
     });
