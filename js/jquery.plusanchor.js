@@ -1,5 +1,5 @@
 /*
- * jQuery PlusAnchor 1.0.5
+ * jQuery PlusAnchor 1.0.7
  * By Jamy Golden
  * http://css-plus.com
  *
@@ -13,13 +13,39 @@
         // to reference this class from internal events and functions.
         var base = this;
         // Access to jQuery and DOM versions of element
-        base.el = el;
-        base.$el = $(el);
+        base.el                 = el;
+        base.$el                = $(el);
         base.$el.data('plusAnchor', base); // Add a reverse reference to the DOM object
-        
+        base.scrollEl           = 'body, html';
+        base.initHash           = window.location.hash;
+        base.offsetTop          = function( ) {
+
+            return $('html').offset().top;
+
+        }; // base.offsetTop()
+        base.detectScrollEl     = function() {
+
+            var curPos = base.offsetTop(),
+                newPos;
+
+            $('html').animate({
+
+                scrollTop: curPos * -1 + 5
+
+            }, 0, function() {
+
+                newPos = base.offsetTop();
+
+            });
+            
+            curPos >= newPos ? base.scrollEl = 'html' : base.scrollEl = 'body';
+
+        }; // base.detectScrollEl()
         base.init = function(){
 
             base.options = $.extend({}, $.plusAnchor.defaults, options);
+
+            base.detectScrollEl();
 
             // onInit callback
             if ( base.options.onInit && typeof( base.options.onInit ) == 'function' ) base.options.onInit( base );
@@ -45,8 +71,7 @@
 
                     }, base.options.speed, base.options.easing);
 
-                }
-                else if ( $name.length ){
+                } else if ( $name.length ){
 
                     // onSlide callback
                     if ( base.options.onSlide && typeof( base.options.onSlide ) == 'function' ) base.options.onSlide( base );
@@ -60,7 +85,7 @@
 
                 }
             });
-        };
+        }; // base.init()
         // Run initializer
         base.init();
     };
