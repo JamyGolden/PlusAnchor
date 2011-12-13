@@ -1,5 +1,5 @@
 /*
- * jQuery PlusAnchor 1.0.7.1
+ * jQuery PlusAnchor 1.0.7.2
  * By Jamy Golden
  * http://css-plus.com
  *
@@ -30,7 +30,7 @@
 
             $('html').animate({
 
-                scrollTop: curPos * -1 + 100
+                scrollTop: curPos * -1 + 1
 
             }, 0, function() {
 
