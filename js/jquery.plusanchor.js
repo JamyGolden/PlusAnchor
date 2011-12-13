@@ -26,9 +26,9 @@
         base.detectScrollEl     = function() {
 
             var curPos = base.offsetTop(),
-                newPos;
+                newPos = 0;
 
-            $('html').animate({
+            $('body').animate({
 
                 scrollTop: curPos * -1 + 1
 
@@ -38,7 +38,9 @@
 
             });
             
-            newPos < curPos && newPos !== 0 ? base.scrollEl = 'html' : base.scrollEl = 'body';
+            // IE fails this test but scrolls on 'html', so the fallback should be html
+            newPos < curPos && newPos !== 0 ? base.scrollEl = 'body' : base.scrollEl = 'html';
+
 
         }; // base.detectScrollEl()
         base.init = function(){
@@ -65,7 +67,7 @@
                     if ( base.options.onSlide && typeof( base.options.onSlide ) == 'function' ) base.options.onSlide( base );
                     // End onSlide callback
 
-                    $('html, body').animate({
+                    $(base.scrollEl).animate({
 
                         scrollTop: $(href).offset().top
 
@@ -77,7 +79,7 @@
                     if ( base.options.onSlide && typeof( base.options.onSlide ) == 'function' ) base.options.onSlide( base );
                     // End onSlide callback
 
-                    $('html, body').animate({
+                    $(base.scrollEl).animate({
 
                         scrollTop: $name.offset().top
 
