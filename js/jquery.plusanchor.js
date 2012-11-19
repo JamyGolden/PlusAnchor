@@ -1,5 +1,5 @@
 /*
- * jQuery PlusAnchor 1.0.7.2
+ * jQuery PlusAnchor 1.0.7.3
  * By Jamy Golden
  * http://css-plus.com
  *
@@ -69,7 +69,7 @@
 
                     $(base.scrollEl).animate({
 
-                        scrollTop: $(href).offset().top
+                        scrollTop: $(href).offset().top + base.options.offsetTop
 
                     }, base.options.speed, base.options.easing);
 
@@ -93,6 +93,7 @@
     };
     $.plusAnchor.defaults ={
         easing: 'swing',  // Anything other than "swing" or "linear" requires the easing.js plugin
+        offsetTop: 0,
         speed: 1000,     // The speed, in miliseconds, it takes to complete a slide
         onInit: null,    // Callback function on plugin initialize
         onSlide: null    // Callback function that runs just before the page starts animating
