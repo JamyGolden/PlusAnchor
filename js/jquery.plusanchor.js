@@ -18,36 +18,14 @@
         base.$el.data('plusAnchor', base); // Add a reverse reference to the DOM object
         base.scrollEl           = 'body, html';
         base.initHash           = window.location.hash;
-        base.offsetTop          = function( ) {
+        base.offsetTop          = function() {
 
             return $('html').offset().top;
 
         }; // base.offsetTop()
-        base.detectScrollEl     = function() {
-
-            var curPos = base.offsetTop(),
-                newPos = 0;
-
-            $('body').animate({
-
-                scrollTop: curPos * -1 + 1
-
-            }, 0, function() {
-
-                newPos = base.offsetTop();
-
-            });
-            
-            // IE fails this test but scrolls on 'html', so the fallback should be html
-            newPos < curPos && newPos !== 0 ? base.scrollEl = 'body' : base.scrollEl = 'html';
-
-
-        }; // base.detectScrollEl()
         base.init = function(){
 
             base.options = $.extend({}, $.plusAnchor.defaults, options);
-
-            base.detectScrollEl();
 
             // onInit callback
             if ( base.options.onInit && typeof( base.options.onInit ) == 'function' ) base.options.onInit( base );
@@ -66,7 +44,6 @@
                     // onSlide callback
                     if ( base.options.onSlide && typeof( base.options.onSlide ) == 'function' ) base.options.onSlide( base );
                     // End onSlide callback
-
                     $(base.scrollEl).animate({
 
                         scrollTop: $(href).offset().top + base.options.offsetTop
@@ -78,7 +55,6 @@
                     // onSlide callback
                     if ( base.options.onSlide && typeof( base.options.onSlide ) == 'function' ) base.options.onSlide( base );
                     // End onSlide callback
-
                     $(base.scrollEl).animate({
 
                         scrollTop: $name.offset().top
