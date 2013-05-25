@@ -35,7 +35,7 @@
                 
                 e.preventDefault();
                 
-                var $this = $(this);
+                var $this = $(this),
                     href = $this.attr('href'),
                     $name = $('a[name="' + $(this).attr('href').substring(1) + '"]');
                     
