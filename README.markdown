@@ -26,8 +26,11 @@ Place the following in your &lt;head&gt; section.
 ## Available options
 	$('body').plusAnchor({
         easing: 'swing', 	// The easing method, defaults are 'swing' and 'linear'. Anything else requires the easing.js plugin
-        speed:  1000 		// The amount of time, in milisecons, it takes to complete a transition
+        speed:  1000,    	// The amount of time, in milliseconds, it takes to complete a transition
+		offsetTop: -20      // The amount of pixels to offset the scroll action by.
     });
+
+    $('body').plusAnchor(false); // remove plusAnchor listeners, useful for re-enabling with different settings on browser resize, etc.
 
 ## Changelog
 
