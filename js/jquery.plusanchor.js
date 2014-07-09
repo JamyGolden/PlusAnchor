@@ -25,20 +25,25 @@
         }; // base.offsetTop()
         base.init = function(){
 
+            if (options === false) {
+                base.$el.find('a[href^="#"]').off('click.plusanchor');
+                return;
+            }
+
             base.options = $.extend({}, $.plusAnchor.defaults, options);
 
             // onInit callback
             if ( base.options.onInit && typeof( base.options.onInit ) == 'function' ) base.options.onInit( base );
             // End onInit callback
 
-            base.$el.find('a[href^="#"]').click(function( e ) {
-                
+            base.$el.find('a[href^="#"]').on('click.plusanchor', function( e ) {
+
                 e.preventDefault();
-                
+
                 var $this = $(this),
                     href = $this.attr('href'),
                     $name = $('a[name="' + $(this).attr('href').substring(1) + '"]');
-                    
+
                 if ( $(href).length ){
 
                     // onSlide callback
@@ -67,7 +72,7 @@
         // Run initializer
         base.init();
     };
-    $.plusAnchor.defaults ={
+    $.plusAnchor.defaults = {
         easing: 'swing',  // Anything other than "swing" or "linear" requires the easing.js plugin
         offsetTop: 0,
         speed: 1000,     // The speed, in miliseconds, it takes to complete a slide
