@@ -37,18 +37,18 @@
 					if ( base.initHash != '' && $(base.initHash).length > 0 ) {
 						window.location.hash = 'hash_' + base.initHash.substring(1);
 						window.scrollTo(0, 0);
-		
+
 						$(window).load( function() {
-		
+
 							timer = setTimeout(function() {
 								$(base.scrollEl).animate({
 									scrollTop: $( base.initHash ).offset().top
 								}, base.options.speed, base.options.easing);
 							}, 2000); // setTimeout
-		
+
 						}); // window.load
 					}; // if window.location.hash
-		
+
 				} // onInit
 			});
 		});
