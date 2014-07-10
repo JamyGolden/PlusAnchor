@@ -62,7 +62,7 @@
                     // End onSlide callback
                     $(base.scrollEl).animate({
 
-                        scrollTop: $name.offset().top
+                        scrollTop: $name.offset().top + base.options.offsetTop
 
                     }, base.options.speed, base.options.easing);
 
