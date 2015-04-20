@@ -1,19 +1,18 @@
 /*
- * jQuery PlusAnchor 1.1.0
- * By Jamy Golden
- * http://css-plus.com
- *
- * Copyright 2015, Jamy Golden
- * Free to use under the MIT license.
- * http://www.opensource.org/licenses/mit-license.php
- */
+* PlusAnchor
+* A form component library
+* Version: "1.1.0"
+* Jamy Golden
+* https://github.com/JamyGolden/PlusAnchor
+* License: MIT
+*/
 (function($){
 
     function scrollToEvent(base) {
         return function(e) {
             e.preventDefault();
 
-            var $this = $(this);
+            var $this = $(this); // Anchor el
             var href = $this.attr('href');
             var $name = $('a[name="' + href.substring(1) + '"]');
 
@@ -25,7 +24,7 @@
                 };
 
                 // End onSlide callback
-                $(base.scrollEl).animate({
+                base.$el.animate({
                     scrollTop: $(href).offset().top + base.options.offsetTop
                 }, base.options.speed, base.options.easing);
 
@@ -37,7 +36,7 @@
                 };
 
                 // End onSlide callback
-                $(base.scrollEl).animate({
+                base.$el.animate({
                     scrollTop: $name.offset().top + base.options.offsetTop
                 }, base.options.speed, base.options.easing);
 
@@ -49,13 +48,15 @@
         // To avoid scope issues, use 'base' instead of 'this'
         // to reference this class from internal events and functions.
         var base = this;
-        // Access to jQuery and DOM versions of element
-        base.el                 = el;
-        base.$el                = $(el);
-        base.scrollEl           = 'body, html';
+        var htmlEl = document.getElementsByTagName('html');
+        var bodyEl = document.body;
+        // If the user selects body, make sure to use 'html, body' for
+        // cross browser compatibility reasons
+        base.el  = el;
+        base.$el = (el === htmlEl || el === bodyEl) ? $('html, body') : $(el);
         base.$el.data('plusAnchor', base); // Add a reverse reference to the DOM object
-        base.init = function(){
 
+        function _constructor() {
             // Check for plusanchor disable
             if (options === false) {
                 base.$el.find('a[href^="#"]').off('click.plusanchor');
@@ -76,19 +77,19 @@
             } else {
                 base.$el.find('a[href^="#"]').on('click.plusanchor', scrollToEvent(base));
             }
-        }; // base.init()
+        }; // _constructor
 
         // Run initializer
-        base.init();
+        _constructor();
     };
 
     $.plusAnchor.defaults = {
-        easing: 'swing',   // String: Anything other than "swing" or "linear" requires the easing.js plugin
-        offsetTop: 0,      // Int: Top offset for anchor scrollto position. Can be positive or negative
-        speed: 1000,       // Int: The speed, in miliseconds, it takes to complete a slide
-        onInit: null,      // Function: Callback function on plugin initialize
-        onSlide: null,     // Function: Callback function that runs just before the page starts animating
-        performance: false // Boolean: Toggles between click and delegate events.
+        easing: 'swing',      // String: Anything other than "swing" or "linear" requires the easing.js plugin
+        offsetTop: 0,         // Int: Top offset for anchor scrollto position. Can be positive or negative
+        speed: 1000,          // Int: The speed, in miliseconds, it takes to complete a slide
+        onInit: null,         // Function: Callback function on plugin initialize
+        onSlide: null,        // Function: Callback function that runs just before the page starts animating
+        performance: false    // Boolean: Toggles between click and delegate events.
     };
 
     $.fn.plusAnchor = function(options){
