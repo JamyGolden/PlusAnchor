@@ -33,18 +33,21 @@
 				offsetTop: -20,
 				speed: 1000,
 				onInit: function( base ) {
+                    var hash = window.location.hash;
 
-					if ( base.initHash != '' && $(base.initHash).length > 0 ) {
-						window.location.hash = 'hash_' + base.initHash.substring(1);
-						window.scrollTo(0, 0);
+                    // If hash exists and link exists on page
+					if (hash && $(hash).length > 0 ) {
+						window.location.hash = 'hash_' + hash.substring(1); // remove #
+						window.scrollTo(0, 0); // Scroll to top
 
+                        // On load
 						$(window).load( function() {
-
-							timer = setTimeout(function() {
+                            // Scroll to hash after page load
+							var timer = setTimeout(function() {
 								$(base.scrollEl).animate({
-									scrollTop: $( base.initHash ).offset().top
+									scrollTop: $( hash ).offset().top
 								}, base.options.speed, base.options.easing);
-							}, 2000); // setTimeout
+							}, 1000);
 
 						}); // window.load
 					}; // if window.location.hash
