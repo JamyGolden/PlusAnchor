@@ -9,22 +9,22 @@ A simple jQuery plugin that scrolls to anchor links instead of instantaneously j
 
 Place the following in your &lt;head&gt; section.
 
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-	<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-	<script type="text/javascript" src="js/jquery.plusanchor.js"></script>
-	<script type="text/javascript">
-	$(document).ready(function(){
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="js/jquery.plusanchor.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function(){
 
-		$('body').plusAnchor({
-			easing: 'easeInOutExpo',
-			speed: 	700
-		});
+        $('body').plusAnchor({
+            easing: 'easeInOutExpo',
+            speed:  700
+        });
 
-	});
-	</script>
+    });
+    </script>
 
 ## Available options
-	$('body').plusAnchor({
+    $('body').plusAnchor({
         easing: 'swing',      // String: Anything other than "swing" or "linear" requires the easing.js plugin
         offsetTop: -20,       // Int: Top offset for anchor scrollto position. Can be positive or negative
         speed: 1000,          // Int: The speed, in miliseconds, it takes to complete a slide
