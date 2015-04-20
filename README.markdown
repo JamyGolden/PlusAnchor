@@ -8,6 +8,7 @@ A simple jQuery plugin that scrolls to anchor links instead of instantaneously j
 
 ## Installation
 Install via bower: `bower install jquery.plusanchor --save`
+
 Alternatively, a manual installation can be done by including jQuery, jquery.easing (optional) and PlusAnchor
 
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
