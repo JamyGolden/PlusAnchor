@@ -17,7 +17,7 @@ Place the following in your &lt;head&gt; section.
 
 		$('body').plusAnchor({
 			easing: 'easeInOutExpo',
-			speed: 	1000
+			speed: 	700
 		});
 
 	});
@@ -25,20 +25,29 @@ Place the following in your &lt;head&gt; section.
 
 ## Available options
 	$('body').plusAnchor({
-        easing: 'swing', 	// The easing method, defaults are 'swing' and 'linear'. Anything else requires the easing.js plugin
-        speed:  1000,    	// The amount of time, in milliseconds, it takes to complete a transition
-		offsetTop: -20      // The amount of pixels to offset the scroll action by.
+        easing: 'swing',      // String: Anything other than "swing" or "linear" requires the easing.js plugin
+        offsetTop: -20,       // Int: Top offset for anchor scrollto position. Can be positive or negative
+        speed: 1000,          // Int: The speed, in miliseconds, it takes to complete a slide
+        onInit: null,         // Function: Callback function on plugin initialize
+        onSlide: null,        // Function: Callback function that runs just before the page starts animating
+        performance: false    // Boolean: Toggles between click and delegate events.
     });
 
-    $('body').plusAnchor(false); // remove plusAnchor listeners, useful for re-enabling with different settings on browser resize, etc.
+    $('body').plusAnchor(false, false); // remove plusAnchor listeners, useful for re-enabling with different settings on browser resize, etc.
+
+## Dependencies
+* >= jQuery 1.7
+* >= jQuery Easing 1.3
 
 ## Changelog
 
-### Version 1
+### 1.1.1
+* Added support for ajax sites.
+* Added support to run PlusAnchor on various elements, not just the body
 
-#### 1.0.1
+### 1.0.1
 * Changed file names and file extentions for simplicity
 * Added example HTML and CSS files to demonstrate what the script can do
 
-#### 1.0
+### 1.0
 * First official version
