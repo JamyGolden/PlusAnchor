@@ -4,6 +4,7 @@ A simple jQuery plugin that scrolls to anchor links instead of instantaneously j
 
 ## Features
 * Works with with ID jumping and anchor jumping
+* Supports ajax/javascript heavy sites
 
 ## Usage instructions
 
