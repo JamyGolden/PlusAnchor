@@ -1,5 +1,6 @@
 # Sass
 .sass-cache
+bower_components
 
 # Sublime
 .sublime-project
