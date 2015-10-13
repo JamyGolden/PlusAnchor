@@ -1,7 +1,7 @@
 {
   "name": "PlusAnchor",
   "description": "A jQuery plugin enables scrolling to anchor links instead of jumping",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "author": "Jamy Golden (http://twitter.com/jamygolden/)",
   "homepage": "https://github.com/JamyGolden/PlusAnchor",
   "repository": {

@@ -30,8 +30,7 @@ module.exports = function(grunt) {
             },
             my_target: {
                 files: {
-                    'js/jquery.plusanchor.min.js': ['js/jquery.plusanchor.js'],
-                    'js/jquery.easing.min.js': ['js/jquery.easing.js'],
+                    'dist/jquery.plusanchor.min.js': ['js/jquery.plusanchor.js'],
                 }
             }
         }
