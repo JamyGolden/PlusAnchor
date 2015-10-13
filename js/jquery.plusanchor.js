@@ -1,7 +1,7 @@
 /*
 * PlusAnchor
 * A form component library
-* Version: "1.1.1"
+* Version: "1.1.2"
 * Jamy Golden
 * https://github.com/JamyGolden/PlusAnchor
 * License: MIT
