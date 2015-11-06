@@ -15,6 +15,7 @@
             var $this = $(this); // Anchor el
             var href = $this.attr('href');
             var $name = $('a[name="' + href.substring(1) + '"]');
+			var $animationTarget = base.options.animationTarget ? $(base.options.animationTarget) : base.$el;
 
             if ( $(href).length ){
 
@@ -24,7 +25,7 @@
                 };
 
                 // End onSlide callback
-                base.$el.animate({
+                $animationTarget.animate({
                     scrollTop: $(href).offset().top + base.options.offsetTop
                 }, base.options.speed, base.options.easing);
 
@@ -36,7 +37,7 @@
                 };
 
                 // End onSlide callback
-                base.$el.animate({
+                $animationTarget.animate({
                     scrollTop: $name.offset().top + base.options.offsetTop
                 }, base.options.speed, base.options.easing);
 
@@ -89,7 +90,8 @@
         speed: 1000,       // Int: The speed, in miliseconds, it takes to complete a slide
         onInit: null,      // Function: Callback function on plugin initialize
         onSlide: null,     // Function: Callback function that runs just before the page starts animating
-        performance: false // Boolean: Toggles between click and delegate events.
+        performance: false, // Boolean: Toggles between click and delegate events.
+		animationTarget: null //String|DOM Element: Selector or DOM element to apply animation to. Keep unspecified, if the target element and animation element are the same.
     };
 
     $.fn.plusAnchor = function(options){
