@@ -40,6 +40,16 @@
                     scrollTop: $name.offset().top + base.options.offsetTop
                 }, base.options.speed, base.options.easing);
 
+            } else if (base.options.scrollToTop) {
+                // onSlide callback
+                if ( base.options.onSlide && typeof( base.options.onSlide ) === 'function' ) {
+                    base.options.onSlide( base );
+                };
+
+                // End onSlide callback
+                base.$el.animate({
+                    scrollTop: base.options.offsetTop
+                }, base.options.speed, base.options.easing);
             }
         }
     }
@@ -89,7 +99,8 @@
         speed: 1000,       // Int: The speed, in miliseconds, it takes to complete a slide
         onInit: null,      // Function: Callback function on plugin initialize
         onSlide: null,     // Function: Callback function that runs just before the page starts animating
-        performance: false // Boolean: Toggles between click and delegate events.
+        performance: false, // Boolean: Toggles between click and delegate events.
+		scrollToTop: false //Boolean: Set to true to scroll to to the top of animation target if scroll target is undefined
     };
 
     $.fn.plusAnchor = function(options){
