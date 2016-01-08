@@ -57,9 +57,11 @@
         base.$el.data('plusAnchor', base); // Add a reverse reference to the DOM object
 
         function _constructor() {
+			var anchorSelector = options.includeCssIndication ? '.js-plus-anchor' : 'a[href^="#"]';
+			
             // Check for plusanchor disable
             if (options === false) {
-                base.$el.find('a[href^="#"]').off('click.plusanchor');
+                base.$el.find(anchorSelector).off('click.plusanchor');
                 return;
             };
 
@@ -73,9 +75,9 @@
             // End onInit callback
 
             if (!base.options.performance) {
-                base.$el.on('click', 'a[href^="#"]', scrollToEvent(base));
+                base.$el.on('click', anchorSelector, scrollToEvent(base));
             } else {
-                base.$el.find('a[href^="#"]').on('click.plusanchor', scrollToEvent(base));
+                base.$el.find(anchorSelector).on('click.plusanchor', scrollToEvent(base));
             }
         }; // _constructor
 
@@ -89,7 +91,8 @@
         speed: 1000,       // Int: The speed, in miliseconds, it takes to complete a slide
         onInit: null,      // Function: Callback function on plugin initialize
         onSlide: null,     // Function: Callback function that runs just before the page starts animating
-        performance: false // Boolean: Toggles between click and delegate events.
+        performance: false, // Boolean: Toggles between click and delegate events.
+		includeCssIndication: false //Boolean: set to true to bind anchors with 'js-plus-anchor' CSS class name only
     };
 
     $.fn.plusAnchor = function(options){
